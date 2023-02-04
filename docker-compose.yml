@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  rabbit:
+    image: rabbitmq:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBIT_CLIENT}
+      - RABBITMQ_DEFAULT_PASS=${RABBIT_PASSWORD}
+    ports:
+      - "5672:5672"
+    container_name: 'rabbit'
+    networks:
+      back_default:
+  db:
+    image: mongo:5.0
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_CLIENT}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodbData:/data/db
+    container_name: 'mongo'
+    networks:
+      back_default:
+  gateway:
+    build: ./services/gateway
+    ports:
+      - "5003:5003"
+    container_name: 'gateway'
+    networks:
+      back_default:
+  users:
+    build: ./services/users
+    container_name: 'users'
+    networks:
+      back_default:
+
+volumes:
+  mongodbData:
+    external: false
+
+networks:
+  back_default:
