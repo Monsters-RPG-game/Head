@@ -5,8 +5,18 @@ composeUp:
 	&& sudo -S docker-compose build \
  	&& sudo docker-compose --env-file ./.env up -d
 
+initProd:
+	git submodule init \
+	&& git submodule update --remote --merge
+
+initDev:
+	git submodule init \
+	&& git submodule update --remote --merge \
+	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout dev \
+	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout dev \
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev
+
 prepare:
 	npm install --prefix ./services/gateway \
 	&& npm install --prefix ./services/users \
-	&& chmod +x ./services/users/.husky/pre-commit \
-	&& chmod +x ./services/gateway/.husky/pre-commit
+	&& npm install --prefix ./services/messages

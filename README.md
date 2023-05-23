@@ -1,6 +1,6 @@
 # Monsters - head
 
-## Set of configs used to properly set up services for game 'Monstes'. Project is written in SOA architecture with node.js
+## Set of configs used to properly set up services for game 'Monsters'. Project is written in SOA architecture with node.js
 
 ## Index
 
@@ -21,28 +21,32 @@ Otherwise, you can start each service manually. Each service contains `README` f
 
 ### 2.1 Automated way
 
+#### Init development builds
+
 ```shell
+make initDev
+make prepare
+```
+
+#### Init production builds
+
+```shell
+make initProd
 make prepare
 ```
 
 ### 2.2 By hand
 
+#### Init submodules
+```shell
+git submodule init
+git submodule update --remote --merge
+```
+
 #### Install dependencies for each service
 
 ```shell
 npm install --prefix ./services/gateway
+npm install --prefix ./services/messages
 npm install --prefix ./services/users
 ```
-
-#### Prepare environment
-
-```shell
-chmod +x ./services/users/.husky/pre-commit
-chmod +x ./services/gateway/.husky/pre-commit
-```
-
-## 3. Communication:
-
-Communication is made using rabbitMQ. Each controller is connecting it and listening to information. Gateway
-receives external message, uses some basic validation and passes that message to each worker
-

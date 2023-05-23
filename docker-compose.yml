@@ -22,6 +22,19 @@ services:
     container_name: 'mongo'
     networks:
       back_default:
+  redis:
+    image: redis:latest
+    environment:
+      - REDIS_PASSWORD==${REDIS_PASSWORD}
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisData:/data/db
+    container_name: 'redis'
+    command: >
+      --requirepass ${REDIS_PASSWORD}
+    networks:
+      back_default:
   gateway:
     build: ./services/gateway
     ports:
@@ -32,6 +45,11 @@ services:
   users:
     build: ./services/users
     container_name: 'users'
+    networks:
+      back_default:
+  messages:
+    build: ./services/messages
+    container_name: 'messages'
     networks:
       back_default:
 
