@@ -2,6 +2,7 @@
 composeUp:
 	npm run --prefix ./services/gateway build \
 	&& npm run --prefix ./services/users build \
+	&& npm run --prefix ./services/messages build \
 	&& sudo -S docker-compose build \
  	&& sudo docker-compose --env-file ./.env up -d
 
@@ -16,7 +17,12 @@ initDev:
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout dev \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev
 
-prepare:
+prepareDev:
 	npm install --prefix ./services/gateway \
 	&& npm install --prefix ./services/users \
 	&& npm install --prefix ./services/messages
+
+prepareProd:
+	npm install --omit=dev --prefix ./services/gateway \
+	&& npm install --omit=dev --prefix ./services/users \
+	&& npm install --omit=dev --prefix ./services/messages \
