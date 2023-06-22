@@ -31,7 +31,7 @@ services:
     volumes:
       - redisData:/data/db
     container_name: 'redis'
-    command: >
+    command:
       --requirepass ${REDIS_PASSWORD}
     networks:
       back_default:
@@ -42,19 +42,33 @@ services:
     container_name: 'gateway'
     networks:
       back_default:
+    depends_on:
+        - "redis"
+        - "rabbit"
+        - "db"
   users:
     build: ./services/users
     container_name: 'users'
     networks:
       back_default:
+    depends_on:
+        - "redis"
+        - "rabbit"
+        - "db"
   messages:
     build: ./services/messages
     container_name: 'messages'
     networks:
       back_default:
+    depends_on:
+        - "redis"
+        - "rabbit"
+        - "db"
 
 volumes:
   mongodbData:
+    external: false
+  redisData:
     external: false
 
 networks:
