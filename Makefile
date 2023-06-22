@@ -26,3 +26,8 @@ prepareProd:
 	npm install --omit=dev --prefix ./services/gateway \
 	&& npm install --omit=dev --prefix ./services/users \
 	&& npm install --omit=dev --prefix ./services/messages \
+
+pullLatest:
+		git --git-dir=./services/users/.git --work-tree=./services/users pull \
+    	&& git --git-dir=./services/messages/.git --work-tree=./services/messages pull \
+    	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull
