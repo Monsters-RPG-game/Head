@@ -25,14 +25,14 @@ Otherwise, you can start each service manually. Each service contains `README` f
 
 ```shell
 make initDev
-make prepare
+make prepareDev
 ```
 
 #### Init production builds
 
 ```shell
 make initProd
-make prepare
+make prepareProd
 ```
 
 ### 2.2 By hand
@@ -50,3 +50,7 @@ npm install --prefix ./services/gateway
 npm install --prefix ./services/messages
 npm install --prefix ./services/users
 ```
+
+### 2.3 Important info
+
+Keep in mind that each service requires prodConfig.json and devConfig.json in `config` folder. You can find required variables in `exampleConfig.json`. Automating this process will be added in the future
