@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: monsters-users-service
+  namespace: default
+spec:
+  selector:
+    app: monsters-users
+  ports:
+    - name: random-port-so-kubectl-wont-bother-me
+      port: 12345

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rabbitMq
+  name: rabbitMq
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: rabbitMq
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 50%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: rabbitMq
+    spec:
+      containers:
+      - image: rabbitmq:latest
+        imagePullPolicy: Always
+        name: rabbitMq
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: "rabbitUser
+        - name: RABBITMQ_DEFAULT_PASS
+          value: "rabbitPassword
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
