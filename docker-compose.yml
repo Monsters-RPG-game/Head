@@ -25,7 +25,7 @@ services:
   redis:
     image: redis:latest
     environment:
-      - REDIS_PASSWORD==${REDIS_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
     ports:
       - "6379:6379"
     volumes:
@@ -33,6 +33,19 @@ services:
     container_name: 'redis'
     command:
       --requirepass ${REDIS_PASSWORD}
+    networks:
+      back_default:
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqlData:/data/mysql
+    container_name: 'mysql'
     networks:
       back_default:
   gateway:

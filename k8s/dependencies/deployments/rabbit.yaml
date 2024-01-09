@@ -30,9 +30,9 @@ spec:
         terminationMessagePolicy: File
         env:
         - name: RABBITMQ_DEFAULT_USER
-          value: "rabbitUser
+          value: "rabbitUser"
         - name: RABBITMQ_DEFAULT_PASS
-          value: "rabbitPassword
+          value: "rabbitPassword"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
