@@ -7,3 +7,6 @@
 [submodule "services/messages"]
 	path = services/messages
 	url = https://github.com/Virus288/Monsters-messages
+[submodule "services/fights"]
+	path = services/fights
+	url = https://github.com/Virus288/Monsters-fights

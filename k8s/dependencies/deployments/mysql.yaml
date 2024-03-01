@@ -34,3 +34,5 @@ spec:
           livenessProbe:
             tcpSocket:
               port: 3306
+      volumes:
+        - name: mysql-volume

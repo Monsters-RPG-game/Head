@@ -28,3 +28,5 @@ spec:
           livenessProbe:
             tcpSocket:
               port: 6379
+      volumes:
+        - name: redis-volume

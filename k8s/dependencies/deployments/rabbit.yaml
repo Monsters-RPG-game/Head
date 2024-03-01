@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: rabbitMq
-  name: rabbitMq
+    app: rabbitmq
+  name: rabbitmq
   namespace: default
 spec:
   progressDeadlineSeconds: 600
@@ -11,7 +11,7 @@ spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: rabbitMq
+      app: rabbitmq
   strategy:
     rollingUpdate:
       maxSurge: 100%
@@ -20,12 +20,12 @@ spec:
   template:
     metadata:
       labels:
-        app: rabbitMq
+        app: rabbitmq
     spec:
       containers:
       - image: rabbitmq:latest
         imagePullPolicy: Always
-        name: rabbitMq
+        name: rabbitmq
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         env:
@@ -37,3 +37,5 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 30
+      volumes:
+        - name: rabbit-volume
