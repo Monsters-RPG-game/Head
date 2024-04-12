@@ -58,11 +58,16 @@ spec:
           volumeMounts:
             - mountPath: "/scripts"
               name: scripts
-    dnsPolicy: ClusterFirst
-    restartPolicy: Always
-    schedulerName: default-scheduler
-    terminationGracePeriodSeconds: 60
-    volumes:
-      - name: scripts
-        hostPath:
-          path: /path/to/your/livenessProbe/location
+            - mountPath: "/logs"
+              name: logs
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: scripts
+          hostPath:
+            path: /path/to/your/livenessProbe/location
+        - name: logs
+          hostPath:
+            path: /path/where/you/want/to/store/logs
