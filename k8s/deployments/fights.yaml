@@ -53,6 +53,8 @@ spec:
           volumeMounts:
             - mountPath: "/scripts"
               name: scripts
+            - mountPath: "/logs"
+              name: logs
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -61,3 +63,6 @@ spec:
         - name: scripts
           hostPath:
             path: /path/to/your/livenessProbe/location
+        - name: logs
+          hostPath:
+            path: /path/where/you/want/to/store/logs
