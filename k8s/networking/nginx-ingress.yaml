@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: default
+spec:
+  tls:
+    - hosts:
+        - api.domain.com
+      secretName: api-domain-tls
+    - hosts:
+        - domain.com
+      secretName: default-domain-tls
+  rules:
+    - host: api.domain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: monsters-gateway-service
+                port:
+                  number: 5003
+          - path: /ws
+            pathType: Prefix
+            backend:
+              service:
+                name: monsters-gateway-service
+                port:
+                  number: 5004
+    - host: domain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: monsters-client-service
+                port:
+                  number: 80

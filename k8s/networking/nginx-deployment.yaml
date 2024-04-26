@@ -18,17 +18,3 @@ spec:
           image: nginx:latest
           ports:
             - containerPort: 80
-            - containerPort: 443
-          volumeMounts:
-            - name: nginx-config-volume
-              mountPath: /etc/nginx/conf.d
-            - name: ssl-certs-volume
-              mountPath: /home/user/certs
-              readOnly: true
-      volumes:
-        - name: nginx-config-volume
-          configMap:
-            name: nginx-config
-        - name: ssl-certs-volume
-          secret:
-            secretName: nginx-ssl-certs
