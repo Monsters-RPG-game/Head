@@ -21,11 +21,11 @@ spec:
           imagePullPolicy: Always
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "R.bY#Mq$HJ%nAS=jP(DkLC<uW+zs7c3T[xN{2"
+              value: mysqlRootPassword
             - name: MYSQL_PASSWORD
-              value: "R.bY#Mq$HJ%nAS=jP(DkLC<uW+zs7c3T[xN{2"
+              value: mysqlPassword
             - name: MYSQL_USER
-              value: virus
+              value: mysqlUser
           ports:
             - containerPort: 3306
           readinessProbe:
@@ -34,5 +34,10 @@ spec:
           livenessProbe:
             tcpSocket:
               port: 3306
+          volumeMounts:
+            - name: mysql-volume
+              mountPath: /var/lib/mysql
       volumes:
         - name: mysql-volume
+          persistentVolumeClaim:
+            claimName: mysql-pvc

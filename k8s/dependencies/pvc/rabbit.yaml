@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rabbit-pvc
+  namespace: default
+spec:
+  volumeName: rabbit-pv
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: default
+spec:
+  volumeName: redis-pv
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi

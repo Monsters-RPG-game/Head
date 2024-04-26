@@ -33,9 +33,14 @@ spec:
           value: "rabbitUser"
         - name: RABBITMQ_DEFAULT_PASS
           value: "rabbitPassword"
+        volumeMounts:
+          - name: rabbit-volume
+            mountPath: /var/lib/rabbitmq
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 30
       volumes:
         - name: rabbit-volume
+          persistentVolumeClaim:
+            claimName: rabbit-pvc

@@ -28,5 +28,10 @@ spec:
           livenessProbe:
             tcpSocket:
               port: 6379
+          volumeMounts:
+            - name: redis-volume
+              mountPath: /data
       volumes:
         - name: redis-volume
+          persistentVolumeClaim:
+            claimName: redis-pvc
