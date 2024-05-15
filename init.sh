@@ -41,6 +41,10 @@ gatewayProdConfig="$local/services/gateway/config/prodConfig.json"
 gatewayDevConfig="$local/services/gateway/config/devConfig.json"
 gatewayTestConfig="$local/services/gateway/config/testConfig.json"
 
+mapsTestConfig="$local/services/maps/config/testConfig.json"
+mapsProdConfig="$local/services/maps/config/prodConfig.json"
+mapsDevConfig="$local/services/maps/config/devConfig.json"
+
 amqpURI=""
 mongoURI=""
 corsOrigin=""
@@ -243,6 +247,20 @@ fi
 if [ ! -f "$fightsTestConfig" ]; then
     create_config_file "$fightsTestConfig" "Fights test config is missing"
     echo_colour "Created test config files for fights"
+fi
+
+# Maps configs
+if [ ! -f "$mapsProdConfig" ]; then
+    create_config_file "$mapsProdConfig" "Maps prod config is missing"
+    echo_colour "Created prod config files for maps"
+fi
+if [ ! -f "$mapsDevConfig" ]; then
+    create_config_file "$mapsDevConfig" "Maps dev config is missing"
+    echo_colour "Created dev config files for maps"
+fi
+if [ ! -f "$mapsTestConfig" ]; then
+    create_config_file "$mapsTestConfig" "Maps test config is missing"
+    echo_colour "Created test config files for maps"
 fi
 
 # Gateway configs

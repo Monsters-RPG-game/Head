@@ -6,6 +6,7 @@ composeUp:
 	&& npm run --prefix ./services/users build \
 	&& npm run --prefix ./services/fights build \
 	&& npm run --prefix ./services/messages build \
+	&& npm run --prefix ./services/maps build \
 	&& sudo -S docker-compose build \
  	&& sudo docker-compose --env-file ./.env up -d
 
@@ -16,6 +17,7 @@ initProd:
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout master \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout master \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/fights checkout master \
+	&& git --git-dir=./services/maps/.git --work-tree=./services/maps checkout master \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout master
 
 # Initialize projects for development
@@ -25,6 +27,7 @@ initDev:
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout dev \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout dev \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/fights checkout dev \
+	&& git --git-dir=./services/maps/.git --work-tree=./services/maps checkout dev \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev
 
 # Prepare project to run as development server
@@ -32,6 +35,7 @@ prepareDev:
 	npm install --prefix ./services/gateway \
 	&& npm install --prefix ./services/users \
 	&& npm install --prefix ./services/fights \
+	&& npm install --prefix ./services/maps \
 	&& npm install --prefix ./services/messages
 
 # Prepare project to run as production servers
@@ -39,11 +43,14 @@ prepareProd:
 	npm install --omit=dev --prefix ./services/gateway \
 	&& npm install --omit=dev --prefix ./services/users \
 	&& npm install --omit=dev --prefix ./services/fights \
-	&& npm install --omit=dev --prefix ./services/messages \
+	&& npm install --omit=dev --prefix ./services/maps \
+	&& npm install --omit=dev --prefix ./services/messages 
 
 # Upgrade all dependencies to latest version from current branch
 pullLatest:
 	git --git-dir=./services/users/.git --work-tree=./services/users pull \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages pull \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/fights pull \
+	&& git --git-dir=./services/maps/.git --work-tree=./services/maps pull \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull
+	
