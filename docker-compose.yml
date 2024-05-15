@@ -77,6 +77,24 @@ services:
         - "redis"
         - "rabbit"
         - "db"
+  fights:
+    build: ./services/fights
+    container_name: 'fights'
+    networks:
+      back_default:
+    depends_on:
+        - "redis"
+        - "rabbit"
+        - "db"
+  maps:
+    build: ./services/maps
+    container_name: 'maps'
+    networks:
+      back_default:
+    depends_on:
+        - "redis"
+        - "rabbit"
+        - "db"
 
 volumes:
   mongodbData:

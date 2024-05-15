@@ -56,6 +56,7 @@ npm install --prefix ./services/gateway
 npm install --prefix ./services/messages
 npm install --prefix ./services/users
 npm install --prefix ./services/fights
+npm install --prefix ./services/maps
 ```
 
 ### 2.3 Important info

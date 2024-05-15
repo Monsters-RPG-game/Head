@@ -1,12 +1,15 @@
 [submodule "services/gateway"]
 	path = services/gateway
-	url = https://github.com/Virus288/Monsters-gateway
+	url = https://github.com/Monsters-RPG-game/Gateway
 [submodule "services/users"]
 	path = services/users
-	url = https://github.com/Virus288/Monsters-users
+	url = https://github.com/Monsters-RPG-game/Users
 [submodule "services/messages"]
 	path = services/messages
-	url = https://github.com/Virus288/Monsters-messages
+	url = https://github.com/Monsters-RPG-game/Messages
 [submodule "services/fights"]
 	path = services/fights
-	url = https://github.com/Virus288/Monsters-fights
+	url = https://github.com/Monsters-RPG-game/Fights
+[submodule "services/maps"]
+	path = services/maps
+	url = https://github.com/Monsters-RPG-game/Maps
