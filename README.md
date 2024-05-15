@@ -61,4 +61,4 @@ npm install --prefix ./services/maps
 
 ### 2.3 Important info
 
-Keep in mind that each service requires testConfig.json, prodConfig.json and devConfig.json in `config` folder. You can find required variables in `exampleConfig.json`. Automating this process will be added in the future. You can always use init.sh file to initialize all configs
+Keep in mind that each service requires testConfig.json, prodConfig.json and devConfig.json in `config` folder. You can find required variables in `exampleConfig.json`. You can always use init.sh file to initialize all configs
