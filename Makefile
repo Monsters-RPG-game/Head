@@ -26,7 +26,7 @@ initDev:
 	&& git submodule update --remote --merge \
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout dev \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout dev \
-	&& git --git-dir=./services/messages/.git --work-tree=./services/fights checkout dev \
+	&& git --git-dir=./services/fights/.git --work-tree=./services/fights checkout dev \
 	&& git --git-dir=./services/maps/.git --work-tree=./services/maps checkout dev \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev
 
