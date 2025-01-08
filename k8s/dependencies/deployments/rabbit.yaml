@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: rabbitmq
-  name: rabbitmq
+    app: rabbit-mq
+  name: rabbit-mq
   namespace: default
 spec:
   progressDeadlineSeconds: 600
@@ -11,7 +11,7 @@ spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: rabbitmq
+      app: rabbit-mq
   strategy:
     rollingUpdate:
       maxSurge: 100%
@@ -20,12 +20,12 @@ spec:
   template:
     metadata:
       labels:
-        app: rabbitmq
+        app: rabbit-mq
     spec:
       containers:
       - image: rabbitmq:latest
         imagePullPolicy: Always
-        name: rabbitmq
+        name: rabbit-mq
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         env:
