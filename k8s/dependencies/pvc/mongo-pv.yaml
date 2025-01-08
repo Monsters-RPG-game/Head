@@ -4,8 +4,8 @@ metadata:
   name: mongo-pv
 spec:
   capacity:
-    storage: 50Gi
+    storage: ${VOLUME_SIZE_MONGO}Gi
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: path/to/where/you/want/to/store/data
+    path: ${MONGO_PV}

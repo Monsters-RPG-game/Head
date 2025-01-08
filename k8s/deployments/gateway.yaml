@@ -1,40 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: monsters-gateway
   name: monsters-gateway
   namespace: default
+  labels:
+    app: monsters-gateway 
 spec:
   progressDeadlineSeconds: 200
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: monsters-gateway
   strategy:
     rollingUpdate:
-      maxSurge: 100
+      maxSurge: 10
       maxUnavailable: 0
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: monsters-gateway
     spec:
       containers:
         - name: monsters-gateway
-          image: localhost:5000/monsters/monsters-gateway:latest
+          image: ${REGISTRY_URL}/monsters/monsters-gateway:latest
           imagePullPolicy: Always
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
           ports:
-            - containerPort: 5003
-            - containerPort: 5004
+            - containerPort: ${PORTS_GATEWAY_HTTP}
+            - containerPort: ${PORTS_GATEWAY_SOCKET}
           resources:
+            limits:
+              cpu: "1"
+              memory: "2000mb"
             requests:
-              cpu: 500m
+              cpu: "0.5"
+              memory: "100mb"
           readinessProbe:
             exec:
               command:
@@ -58,7 +59,7 @@ spec:
           volumeMounts:
             - mountPath: "/scripts"
               name: scripts
-            - mountPath: "/logs"
+            - mountPath: "/root/.cache/monsters"
               name: logs
       dnsPolicy: ClusterFirst
       restartPolicy: Always
@@ -67,7 +68,7 @@ spec:
       volumes:
         - name: scripts
           hostPath:
-            path: /path/to/your/livenessProbe/location
+            path: ${LOCATION_SCRIPTS}
         - name: logs
           hostPath:
-            path: /path/where/you/want/to/store/logs
+            path: ${LOCATION_LOGS}

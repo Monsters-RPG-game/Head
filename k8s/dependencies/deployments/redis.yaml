@@ -19,7 +19,7 @@ spec:
         - name: redis
           image: redis:latest
           imagePullPolicy: Always
-          args: ["redis-server", "--requirepass", "redisPassword"]
+          args: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
           ports:
             - containerPort: 6379
           readinessProbe:

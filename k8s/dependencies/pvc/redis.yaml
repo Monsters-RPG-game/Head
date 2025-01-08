@@ -3,9 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   namespace: default
 spec:
+  storageClassName: ""
   volumeName: redis-pv
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 10Gi
+      storage: ${VOLUME_SIZE_REDIS}Gi

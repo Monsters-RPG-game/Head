@@ -14,12 +14,12 @@ chmod +x init.sh
 ./init.sh
 ```
 
-If you are planning on using docker-compose, you'll need to add `.env` file. You can edit `example.env` since it contains all variables required to start project
-
 > [!IMPORTANT]
 > Compose wasn't used by me for a long long time. It might not work
 
 Otherwise, you can start each service manually. Each service contains `README` file with information, on how to start it
+
+This application also includes example.env, which will be used in k8s deployments. docker-compose also include parts of this env, but wasn't tested ( I used compose only once )
 
 ## 2. How to initialize environment
 
