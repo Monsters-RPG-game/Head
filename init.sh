@@ -33,17 +33,9 @@ messagesProdConfig="$local/services/messages/config/prodConfig.json"
 messagesDevConfig="$local/services/messages/config/devConfig.json"
 messagesTestConfig="$local/services/messages/config/testConfig.json"
 
-fightsProdConfig="$local/services/fights/config/prodConfig.json"
-fightsDevConfig="$local/services/fights/config/devConfig.json"
-fightsTestConfig="$local/services/fights/config/testConfig.json"
-
 gatewayProdConfig="$local/services/gateway/config/prodConfig.json"
 gatewayDevConfig="$local/services/gateway/config/devConfig.json"
 gatewayTestConfig="$local/services/gateway/config/testConfig.json"
-
-mapsTestConfig="$local/services/maps/config/testConfig.json"
-mapsProdConfig="$local/services/maps/config/prodConfig.json"
-mapsDevConfig="$local/services/maps/config/devConfig.json"
 
 amqpURI=""
 mongoURI=""
@@ -52,10 +44,6 @@ myAddress=""
 httpPort=0
 socketPort=0
 redisURI=""
-mysqlUser=""
-mysqlPassword=""
-mysqlHost=""
-mysqlDb=""
 sessionSecret=""
 sessionSecured=false
 
@@ -120,34 +108,6 @@ function create_gateway_config_file() {
         fi
     done
 
-    while [ -z "$mysqlUser" ]; do
-        read -p "Enter mysqlUser [string]: " mysqlUser
-        if [ -z "$mysqlUser" ]; then
-            echo "MysqlUser cannot be empty. Provide a correct value."
-        fi
-    done
-
-    while [ -z "$mysqlPassword" ]; do
-        read -p "Enter mysqlPassword [string]: " mysqlPassword
-        if [ -z "$mysqlPassword" ]; then
-            echo "MysqlPassword cannot be empty. Provide a correct value."
-        fi
-    done
-
-    while [ -z "$mysqlHost" ]; do
-        read -p "Enter mysqlHost [string]: " mysqlHost
-        if [ -z "$mysqlHost" ]; then
-            echo "MysqlHost cannot be empty. Provide a correct value."
-        fi
-    done
-
-    while [ -z "$mysqlDb" ]; do
-        read -p "Enter mysqlDb [string]: " mysqlDb
-        if [ -z "$mysqlDb" ]; then
-            echo "MysqlDb cannot be empty. Provide a correct value."
-        fi
-    done
-
     while [ -z "$sessionSecret" ]; do
         read -p "Enter sessionSecret [string]: " sessionSecret
         if [ -z "$sessionSecret" ]; then
@@ -192,12 +152,6 @@ cat <<EOF > "$config_file"
     "socketPort": $socketPort,
     "redisURI": "$redisURI",
     "mongoURI": "$mongoURI",
-    "mysql": {
-        "user": "$mysqlUser",
-        "password": "$mysqlPassword",
-        "host": "$mysqlHost",
-        "db": "$mysqlDb"
-    },
     "session": {
       "secret": "$sessionSecret",
       "secured": $sessionSecured
@@ -233,34 +187,6 @@ fi
 if [ ! -f "$messagesTestConfig" ]; then
     create_config_file "$messagesTestConfig" "Messages test config is missing"
     echo_colour "Created test config files for messages"
-fi
-
-# Fights configs
-if [ ! -f "$fightsProdConfig" ]; then
-    create_config_file "$fightsProdConfig" "Fights prod config is missing"
-    echo_colour "Created prod config files for fights"
-fi
-if [ ! -f "$fightsDevConfig" ]; then
-    create_config_file "$fightsDevConfig" "Fights dev config is missing"
-    echo_colour "Created dev config files for fights"
-fi
-if [ ! -f "$fightsTestConfig" ]; then
-    create_config_file "$fightsTestConfig" "Fights test config is missing"
-    echo_colour "Created test config files for fights"
-fi
-
-# Maps configs
-if [ ! -f "$mapsProdConfig" ]; then
-    create_config_file "$mapsProdConfig" "Maps prod config is missing"
-    echo_colour "Created prod config files for maps"
-fi
-if [ ! -f "$mapsDevConfig" ]; then
-    create_config_file "$mapsDevConfig" "Maps dev config is missing"
-    echo_colour "Created dev config files for maps"
-fi
-if [ ! -f "$mapsTestConfig" ]; then
-    create_config_file "$mapsTestConfig" "Maps test config is missing"
-    echo_colour "Created test config files for maps"
 fi
 
 # Gateway configs

@@ -7,9 +7,3 @@
 [submodule "services/messages"]
 	path = services/messages
 	url = https://github.com/Monsters-RPG-game/Messages
-[submodule "services/fights"]
-	path = services/fights
-	url = https://github.com/Monsters-RPG-game/Fights
-[submodule "services/maps"]
-	path = services/maps
-	url = https://github.com/Monsters-RPG-game/Maps
