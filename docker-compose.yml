@@ -35,19 +35,6 @@ services:
       --requirepass ${REDIS_PASSWORD}
     networks:
       back_default:
-  mysql:
-    image: mysql:latest
-    environment:
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_USER=${MYSQL_USER}
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysqlData:/data/mysql
-    container_name: 'mysql'
-    networks:
-      back_default:
   gateway:
     build: ./services/gateway
     ports:
@@ -71,24 +58,6 @@ services:
   messages:
     build: ./services/messages
     container_name: 'messages'
-    networks:
-      back_default:
-    depends_on:
-        - "redis"
-        - "rabbit"
-        - "db"
-  fights:
-    build: ./services/fights
-    container_name: 'fights'
-    networks:
-      back_default:
-    depends_on:
-        - "redis"
-        - "rabbit"
-        - "db"
-  maps:
-    build: ./services/maps
-    container_name: 'maps'
     networks:
       back_default:
     depends_on:
