@@ -21,9 +21,9 @@ spec:
           imagePullPolicy: Always
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
-              value: "mongoClient"
+              value: "${MONGO_CLIENT}"
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: "mongoPassword"
+              value: "${MONGO_PASSWORD}"
           ports:
             - containerPort: 27017
           volumeMounts:

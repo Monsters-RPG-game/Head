@@ -4,9 +4,10 @@ metadata:
   name: rabbit-pvc
   namespace: default
 spec:
+  storageClassName: "" 
   volumeName: rabbit-pv
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 10Gi
+      storage: ${VOLUME_SIZE_RABBIT}Gi

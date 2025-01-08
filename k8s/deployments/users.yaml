@@ -1,35 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: monsters-users
   name: monsters-users
   namespace: default
+  labels:
+    app: monsters-users
 spec:
   progressDeadlineSeconds: 200
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: monsters-users
   strategy:
     rollingUpdate:
-      maxSurge: 100
+      maxSurge: 10
       maxUnavailable: 0
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: monsters-users
     spec:
       containers:
         - name: monsters-users
-          image: localhost:5000/monsters/monsters-users:latest
+          image: ${REGISTRY_URL}/monsters/monsters-users:latest
           imagePullPolicy: Always
           resources:
+            limits:
+              cpu: "1"
+              memory: "2000mb"
             requests:
-              cpu: 500m
+              cpu: "0.5"
+              memory: "100mb"
           readinessProbe:
             exec:
               command:
@@ -53,7 +56,7 @@ spec:
           volumeMounts:
             - mountPath: "/scripts"
               name: scripts
-            - mountPath: "/logs"
+            - mountPath: "/root/.cache/monsters"
               name: logs
       dnsPolicy: ClusterFirst
       restartPolicy: Always
@@ -62,7 +65,7 @@ spec:
       volumes:
         - name: scripts
           hostPath:
-            path: /path/to/your/livenessProbe/location
+            path: ${LOCATION_SCRIPTS}
         - name: logs
           hostPath:
-            path: /path/where/you/want/to/store/logs
+            path: ${LOCATION_LOGS}

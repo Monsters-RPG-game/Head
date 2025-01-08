@@ -30,9 +30,9 @@ spec:
         terminationMessagePolicy: File
         env:
         - name: RABBITMQ_DEFAULT_USER
-          value: "rabbitUser"
+          value: "${RABBIT_CLIENT}" 
         - name: RABBITMQ_DEFAULT_PASS
-          value: "rabbitPassword"
+          value: "${RABBIT_PASSWORD}"
         volumeMounts:
           - name: rabbit-volume
             mountPath: /var/lib/rabbitmq
