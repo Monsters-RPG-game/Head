@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: monsters-gateway
+  name: monsters-authorizations
   namespace: default
   labels:
-    app: monsters-gateway 
+    app: monsters-authorizations
 spec:
   progressDeadlineSeconds: 200
   replicas: 2
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: monsters-gateway
+      app: monsters-authorizations
   strategy:
     rollingUpdate:
       maxSurge: 10
@@ -20,15 +20,14 @@ spec:
   template:
     metadata:
       labels:
-        app: monsters-gateway
+        app: monsters-authorizations
     spec:
       containers:
-        - name: monsters-gateway
-          image: ${REGISTRY_URL}/monsters/monsters-gateway:latest
+        - name: monsters-authorizations
+          image: ${REGISTRY_URL}/monsters/authorizations:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: ${PORTS_GATEWAY_HTTP}
-            - containerPort: ${PORTS_GATEWAY_SOCKET}
+            - containerPort: ${PORTS_AUTHORIZATIONS_HTTP}
           resources:
             limits:
               cpu: "1"
