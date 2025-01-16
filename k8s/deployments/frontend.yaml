@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monsters-client
+  namespace: default
+  labels:
+    app: monsters-client 
+spec:
+  progressDeadlineSeconds: 200
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: monsters-client
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: monsters-client
+    spec:
+      containers:
+        - name: monsters-client
+          image: ${REGISTRY_URL}/monsters/monsters-client:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: ${PORTS_CLIENT_HTTP}
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "500M"
+            requests:
+              cpu: "0.3"
+              memory: "100M"
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: scripts
+          hostPath:
+            path: ${LOCATION_SCRIPTS}
+        - name: logs
+          hostPath:
+            path: ${LOCATION_LOGS}
