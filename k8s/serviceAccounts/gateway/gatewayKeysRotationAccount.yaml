@@ -1,0 +1,5 @@
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: gateway-rotate-keys-service-account
+  namespace: default

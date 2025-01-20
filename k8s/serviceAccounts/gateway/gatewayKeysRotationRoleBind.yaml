@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: gateway-rotate-keys-role-bind
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: gateway-rotate-keys-role
+subjects:
+  - kind: ServiceAccount
+    name: gateway-rotate-keys-service-account
+    namespace: default
