@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   concurrencyPolicy: Forbid
-  schedule: "* 12 * * 6"
+  schedule: "0 1 1,15 * *"
   jobTemplate:
     spec:
       template:

@@ -5,6 +5,7 @@ composeUp:
 	npm run --prefix ./services/gateway build \
 	&& npm run --prefix ./services/users build \
 	&& npm run --prefix ./services/messages build \
+	&& npm run --prefix ./services/authorizations build \
 	&& sudo -S docker-compose build \
  	&& sudo docker-compose --env-file ./.env up -d
 
@@ -14,7 +15,8 @@ initProd:
 	&& git submodule update --remote --merge \
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout master \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout master \
-	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout master
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout master \
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/authorizations checkout master
 
 # Initialize projects for development
 initDev:
@@ -22,23 +24,27 @@ initDev:
 	&& git submodule update --remote --merge \
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout dev \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout dev \
-	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev \
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/authorizations checkout dev
 
 # Prepare project to run as development server
 prepareDev:
 	npm install --prefix ./services/gateway \
 	&& npm install --prefix ./services/users \
-	&& npm install --prefix ./services/messages
+	&& npm install --prefix ./services/messages \
+	&& npm install --prefix ./services/authorizations
 
 # Prepare project to run as production servers
 prepareProd:
 	npm install --omit=dev --prefix ./services/gateway \
 	&& npm install --omit=dev --prefix ./services/users \
-	&& npm install --omit=dev --prefix ./services/messages 
+	&& npm install --omit=dev --prefix ./services/messages \
+	&& npm install --omit=dev --prefix ./services/authorizations
 
 # Upgrade all dependencies to latest version from current branch
 pullLatest:
 	git --git-dir=./services/users/.git --work-tree=./services/users pull \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages pull \
-	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull \
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/authorizations pull
 	
