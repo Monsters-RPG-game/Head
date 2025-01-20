@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: gateway-rotate-keys
+  namespace: default
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: gateway-rotate-keys-service-account
+          restartPolicy: Never
+          containers:
+            - name: monsters-gateway
+              image: ${REGISTRY_URL}/monsters/monsters-gateway:latest
+              imagePullPolicy: Always
+              command:
+                - '/bin/sh'
+                - '-c'
+                - |
+                  NODE_ENV=${NODE_ENV} /usr/local/bin/node ./build/src/tools/rotateKeys.js
