@@ -7,3 +7,6 @@
 [submodule "services/messages"]
 	path = services/messages
 	url = https://github.com/Monsters-RPG-game/Messages
+[submodule "services/authorizations"]
+	path = services/authorizations
+	url = https://github.com/Monsters-RPG-game/Authorizations.git
