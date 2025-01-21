@@ -1,6 +1,6 @@
 # Dotenv environment variables file
 .env
-.env.test
+.env*
 
 # IDEs and editors
 .idea

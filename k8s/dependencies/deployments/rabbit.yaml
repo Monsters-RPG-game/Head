@@ -4,7 +4,7 @@ metadata:
   labels:
     app: rabbit-mq
   name: rabbit-mq
-  namespace: default
+  namespace: ${NAMESPACE}
 spec:
   progressDeadlineSeconds: 600
   replicas: 1

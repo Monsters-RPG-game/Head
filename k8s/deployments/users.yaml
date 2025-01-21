@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: monsters-users
-  namespace: default
+  namespace: ${NAMESPACE}
   labels:
     app: monsters-users
 spec:

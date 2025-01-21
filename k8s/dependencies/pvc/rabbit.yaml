@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: rabbit-pvc
-  namespace: default
+  namespace: ${NAMESPACE}
 spec:
   storageClassName: "" 
   volumeName: rabbit-pv

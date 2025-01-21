@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: gateway-rotate-keys-role
-  namespace: default
+  namespace: ${NAMESPACE}
 rules:
   - apiGroups: ["apps", "extensions"]
     resources: ["deployments"]
