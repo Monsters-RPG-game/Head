@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: autorizations-rotate-keys
-  namespace: default
+  namespace: ${NAMESPACE}
 spec:
   concurrencyPolicy: Forbid
   schedule: "0 1 1,15 * *"

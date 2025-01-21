@@ -2,4 +2,4 @@ kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: authorizations-rotate-keys-service-account
-  namespace: default
+  namespace: ${NAMESPACE}
