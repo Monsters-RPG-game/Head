@@ -23,7 +23,7 @@ spec:
         app: rabbit-mq
     spec:
       containers:
-      - image: rabbitmq:latest
+      - image: heidiks/rabbitmq-delayed-message-exchange:latest
         imagePullPolicy: Always
         name: rabbit-mq
         terminationMessagePath: /dev/termination-log
