@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: graphana
+  name: graphana
+  namespace: ${NAMESPACE}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: graphana
+  template:
+    metadata:
+      labels:
+        app: graphana
+    spec:
+      containers:
+        - name: graphana
+          image: grafana/grafana:latest
+          ports:
+            - containerPort: 3000
+          env:
+          - name: GF_SECURITY_ADMIN_PASSWORD
+            value: ${GRAPHANA_PASSWORD}
