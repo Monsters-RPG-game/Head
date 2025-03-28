@@ -20,7 +20,7 @@ data:
           - targets: ['otel:9090']
       - job_name: 'gateway_metrics'
         static_configs:
-          - targets: ["${PORTS_GATEWAY_HTTP}:5003"]
+          - targets: ["monsters-gateway-service:5003"]
       - job_name: 'users_metrics'
         static_configs:
           - targets: ["monsters-users-service:80"]
