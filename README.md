@@ -1,6 +1,6 @@
 # Monsters - head
 
-## Set of configs used to properly set up services for game 'Monsters'. Project is written in SOA architecture with node.js
+## Set of configs used to properly set up services for game 'Monsters'.
 
 TLDR;
 1. [How to start](#1-how-to-start)
