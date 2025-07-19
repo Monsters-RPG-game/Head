@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monsters-docs
+  namespace: ${NAMESPACE}
+  labels:
+    app: monsters-docs
+spec:
+  progressDeadlineSeconds: 200
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: monsters-docs
+  strategy:
+    rollingUpdate:
+      maxSurge: 10
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: monsters-docs
+    spec:
+      containers:
+        - name: monsters-docs
+          image: ${REGISTRY_URL}/monsters/monsters-docs:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: ${PORTS_DOCS_HTTP}
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.5"
+              memory: "100M"
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 60

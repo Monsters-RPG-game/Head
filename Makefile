@@ -6,7 +6,8 @@ initProd:
 	&& git submodule update --remote --merge \
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout master \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout master \
-	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout master
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout master \
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/docs checkout master
 
 # Initialize projects for development
 initDev:
@@ -14,7 +15,8 @@ initDev:
 	&& git submodule update --remote --merge \
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout dev \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout dev \
-	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev \
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/docs checkout dev
 
 # Prepare project to run as development server
 prepareDev:
@@ -32,5 +34,6 @@ prepareProd:
 pullLatest:
 	git --git-dir=./services/users/.git --work-tree=./services/users pull \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages pull \
-	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull \
+	&& git --git-dir=./services/gateway/.git --work-tree=./services/docs pull
 	
