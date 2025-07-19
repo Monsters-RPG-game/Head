@@ -7,7 +7,7 @@ initProd:
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout master \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout master \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout master \
-	&& git --git-dir=./services/gateway/.git --work-tree=./services/docs checkout master
+	&& git --git-dir=./services/docs/.git --work-tree=./services/docs checkout master
 
 # Initialize projects for development
 initDev:
@@ -16,7 +16,7 @@ initDev:
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout dev \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout dev \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev \
-	&& git --git-dir=./services/gateway/.git --work-tree=./services/docs checkout dev
+	&& git --git-dir=./services/docs/.git --work-tree=./services/docs checkout dev
 
 # Prepare project to run as development server
 prepareDev:
@@ -35,5 +35,5 @@ pullLatest:
 	git --git-dir=./services/users/.git --work-tree=./services/users pull \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages pull \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull \
-	&& git --git-dir=./services/gateway/.git --work-tree=./services/docs pull
+	&& git --git-dir=./services/docs/.git --work-tree=./services/docs pull
 	
