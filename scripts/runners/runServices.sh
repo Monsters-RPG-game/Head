@@ -2,7 +2,7 @@
 
 echo "Starting services"
 
-services=("users" "messages" "gateway")
+services=("users" "messages" "gateway" "fights")
 base_dir="./services"
 
 for service in "${services[@]}"; do
