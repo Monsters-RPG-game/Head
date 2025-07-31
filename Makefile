@@ -37,3 +37,19 @@ pullLatest:
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull \
 	&& git --git-dir=./services/docs/.git --work-tree=./services/docs pull
 	
+
+build:
+	npm --prefix ./services/gateway run build \
+	&& npm --prefix ./services/users run build \
+	&& npm --prefix ./services/messages run build
+
+cleanNodeModules:
+	rm -rf ./services/gateway/node_modules \
+	rm -rf ./services/gateway/node_modules \
+	rm -rf ./services/messages/node_modules 
+
+cleanCache:
+	make clean -C ./services/gateway &
+	make clean -C ./services/users &
+	make clean -C ./services/messages
+

@@ -1,0 +1,16 @@
+mongoUrl="mongodb://mongoClient:mongoPassword@mongo:27017"
+amqpUrl="amqp://rabbitClient:rabbitPassword@127.0.0.1:5672"
+redisUrl="redis://:redisPassword@localhost:6379"
+corsOrigin=https://front.server.com
+myAddress=https://api.server.com
+myDomain=".server.com"
+authorizationAddress=https://auth.server.com
+authorizationInnerAddress=https://auth.server.com
+httpPort=5003
+socketPort=5004
+metricsLoki="http://localhost:3100"
+sessionSecret=sessionPassword
+sessionSecured=false
+sessionTrustProxy=true
+repository=mongo
+tokensDomain=true

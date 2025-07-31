@@ -8,14 +8,14 @@ TLDR;
 
 ## 1. How to start:
 
-This project includes docker-compose configs and scripts to initialize services. You can use init.sh file to complete automate services configuration process. You can also use predefined makefile commands to start shorten your work
+This project includes configs and scripts to initialize services. You can use init.sh file to complete automate services configuration process. You can also use predefined makefile commands to start shorten your work
 ```bash
 chmod +x init.sh
 ./init.sh
 ```
 
 > [!IMPORTANT]
-> Compose wasn't used by me for a long long time. It might not work
+> Services in this project connect to `RabbitMQ`, `MongoDB` and `Redis`
 
 Otherwise, you can start each service manually. Each service contains `README` file with information, on how to start it
 
@@ -58,3 +58,4 @@ npm install --prefix ./services/users
 
 > [!IMPORTANT]
 > Keep in mind that each service requires testConfig.json, prodConfig.json and devConfig.json in `config` folder. You can find required variables in `exampleConfig.json`. You can always use init.sh file to initialize all configs
+

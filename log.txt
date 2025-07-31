@@ -1,0 +1,203 @@
+
+git submodule init \
+&& git submodule update --remote --merge \
+&& git --git-dir=./services/users/.git --work-tree=./services/users checkout dev \
+&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout dev \
+&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev \
+&& git --git-dir=./services/docs/.git --work-tree=./services/docs checkout dev
+Already up to date.
+Submodule path 'services/gateway': merged in 'e7416e9034cf8cac4d2d044ff36d318c3d9f2622'
+Already up to date.
+Submodule path 'services/messages': merged in 'ebd96177cf7e770f8e536d7a1a1be0d70dd158fd'
+Already up to date.
+Submodule path 'services/users': merged in 'cdcff6e0a82301839d1a4049b9abc79202dd5aed'
+Your branch is up to date with 'origin/dev'.
+M	package-lock.json
+Your branch is up to date with 'origin/dev'.
+M	package-lock.json
+Your branch is up to date with 'origin/dev'.
+Your branch is ahead of 'origin/dev' by 1 commit.
+  (use "git push" to publish your local commits)
+git --git-dir=./services/users/.git --work-tree=./services/users pull \
+&& git --git-dir=./services/messages/.git --work-tree=./services/messages pull \
+&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull \
+&& git --git-dir=./services/docs/.git --work-tree=./services/docs pull
+Already up to date.
+Already up to date.
+Already up to date.
+Already up to date.
+rm -rf ./services/gateway/node_modules \
+rm -rf ./services/gateway/node_modules \
+rm -rf ./services/messages/node_modules 
+make clean -C ./services/gateway &
+make clean -C ./services/users &
+make[1]: Entering directory '/run/media/virus/Backup/Desktop/Monsters/Monsters-head/services/gateway'
+rm -rf ./build \
+rm tsconfig.tsbuildinfo
+make clean -C ./services/messages
+make[1]: Entering directory '/run/media/virus/Backup/Desktop/Monsters/Monsters-head/services/messages'
+rm -rf ./build \
+rm tsconfig.tsbuildinfo
+make[1]: Entering directory '/run/media/virus/Backup/Desktop/Monsters/Monsters-head/services/users'
+rm -rf ./build \
+rm tsconfig.tsbuildinfo
+make[1]: Leaving directory '/run/media/virus/Backup/Desktop/Monsters/Monsters-head/services/users'
+make[1]: Leaving directory '/run/media/virus/Backup/Desktop/Monsters/Monsters-head/services/gateway'
+make[1]: Leaving directory '/run/media/virus/Backup/Desktop/Monsters/Monsters-head/services/messages'
+npm install --prefix ./services/gateway \
+&& npm install --prefix ./services/users \
+&& npm install --prefix ./services/messages
+
+added 983 packages, and audited 984 packages in 11s
+
+180 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+up to date, audited 687 packages in 1s
+
+171 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+added 689 packages, and audited 690 packages in 9s
+
+173 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm --prefix ./services/gateway run build \
+&& npm --prefix ./services/users run build \
+&& npm --prefix ./services/messages run build
+
+> gateway@0.2.6 build
+> tsc -p tsconfig.json
+
+
+> users@0.1.9 build
+> tsc -p tsconfig.json
+
+
+> messages@0.1.5 build
+> tsc -p tsconfig.json
+
+
+> users@0.1.9 verifyConfig
+> tsx src/tools/config/verify.ts
+
+[20:27:57] Log.ERROR: Config loader No env provided
+[20:27:57] Log.ERROR: Config loader Got error while reading config files
+[20:27:57] Log.ERROR: Config loader No config files
+
+> messages@0.1.5 verifyConfig
+> tsx src/tools/config/verify.ts
+
+[20:28:00] Log.ERROR: Config loader No env provided
+[20:28:00] Log.ERROR: Config loader Got error while reading config files
+[20:28:00] Log.ERROR: Config loader No config files
+
+> gateway@0.2.6 verifyConfig
+> tsx src/tools/config/verify.ts
+
+[20:28:04] Log.ERROR: Config loader No env provided
+[20:28:04] Log.ERROR: Config loader Got error while reading config files
+[20:28:04] Log.ERROR: Config loader No config files
+
+> gateway@0.2.6 migrate:dev
+> cross-env NODE_ENV=development node build/src/migrations/index.js
+
+[20:28:37] Log.ERROR: Migrations Could not migrate
+[20:28:37] Log.ERROR: Migrations {
+  "message": "getaddrinfo ENOTFOUND mongo",
+  "errorLabelSet": {},
+  "reason": {
+    "type": "Unknown",
+    "servers": {
+      "mongo:27017": {
+        "address": "mongo:27017",
+        "type": "Unknown",
+        "hosts": [],
+        "passives": [],
+        "arbiters": [],
+        "tags": {},
+        "minWireVersion": 0,
+        "maxWireVersion": 0,
+        "roundTripTime": -1,
+        "minRoundTripTime": 0,
+        "lastUpdateTime": 67652425,
+        "lastWriteDate": 0,
+        "error": {
+          "errorLabelSet": {},
+          "beforeHandshake": false
+        },
+        "topologyVersion": null,
+        "setName": null,
+        "setVersion": null,
+        "electionId": null,
+        "logicalSessionTimeoutMinutes": null,
+        "maxMessageSizeBytes": null,
+        "maxWriteBatchSize": null,
+        "maxBsonObjectSize": null,
+        "primary": null,
+        "me": null,
+        "$clusterTime": null,
+        "iscryptd": false
+      }
+    },
+    "stale": false,
+    "compatible": true,
+    "heartbeatFrequencyMS": 10000,
+    "localThresholdMS": 15,
+    "setName": null,
+    "maxElectionId": null,
+    "maxSetVersion": null,
+    "commonWireVersion": 0,
+    "logicalSessionTimeoutMinutes": null
+  },
+  "cause": {
+    "type": "Unknown",
+    "servers": {
+      "mongo:27017": {
+        "address": "mongo:27017",
+        "type": "Unknown",
+        "hosts": [],
+        "passives": [],
+        "arbiters": [],
+        "tags": {},
+        "minWireVersion": 0,
+        "maxWireVersion": 0,
+        "roundTripTime": -1,
+        "minRoundTripTime": 0,
+        "lastUpdateTime": 67652425,
+        "lastWriteDate": 0,
+        "error": {
+          "errorLabelSet": {},
+          "beforeHandshake": false
+        },
+        "topologyVersion": null,
+        "setName": null,
+        "setVersion": null,
+        "electionId": null,
+        "logicalSessionTimeoutMinutes": null,
+        "maxMessageSizeBytes": null,
+        "maxWriteBatchSize": null,
+        "maxBsonObjectSize": null,
+        "primary": null,
+        "me": null,
+        "$clusterTime": null,
+        "iscryptd": false
+      }
+    },
+    "stale": false,
+    "compatible": true,
+    "heartbeatFrequencyMS": 10000,
+    "localThresholdMS": 15,
+    "setName": null,
+    "maxElectionId": null,
+    "maxSetVersion": null,
+    "commonWireVersion": 0,
+    "logicalSessionTimeoutMinutes": null
+  }
+}
