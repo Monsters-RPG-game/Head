@@ -6,6 +6,7 @@ initProd:
 	&& git submodule update --remote --merge \
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout master \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout master \
+	&& git --git-dir=./services/fights/.git --work-tree=./services/fights checkout master \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout master \
 	&& git --git-dir=./services/docs/.git --work-tree=./services/docs checkout master
 
@@ -14,6 +15,7 @@ initDev:
 	git submodule init \
 	&& git submodule update --remote --merge \
 	&& git --git-dir=./services/users/.git --work-tree=./services/users checkout dev \
+	&& git --git-dir=./services/fights/.git --work-tree=./services/fights checkout dev \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages checkout dev \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway checkout dev \
 	&& git --git-dir=./services/docs/.git --work-tree=./services/docs checkout dev
@@ -22,18 +24,21 @@ initDev:
 prepareDev:
 	npm install --prefix ./services/gateway \
 	&& npm install --prefix ./services/users \
+	&& npm install --prefix ./services/fights \
 	&& npm install --prefix ./services/messages
 
 # Prepare project to run as production servers
 prepareProd:
 	npm install --omit=dev --prefix ./services/gateway \
 	&& npm install --omit=dev --prefix ./services/users \
+	&& npm install --omit=dev --prefix ./services/fights \
 	&& npm install --omit=dev --prefix ./services/messages
 
 # Upgrade all dependencies to latest version from current branch
 pullLatest:
 	git --git-dir=./services/users/.git --work-tree=./services/users pull \
 	&& git --git-dir=./services/messages/.git --work-tree=./services/messages pull \
+	&& git --git-dir=./services/fights/.git --work-tree=./services/fights pull \
 	&& git --git-dir=./services/gateway/.git --work-tree=./services/gateway pull \
 	&& git --git-dir=./services/docs/.git --work-tree=./services/docs pull
 	
@@ -41,15 +46,18 @@ pullLatest:
 build:
 	npm --prefix ./services/gateway run build \
 	&& npm --prefix ./services/users run build \
+	&& npm --prefix ./services/fights run build \
 	&& npm --prefix ./services/messages run build
 
 cleanNodeModules:
 	rm -rf ./services/gateway/node_modules \
 	rm -rf ./services/gateway/node_modules \
+	rm -rf ./services/fights/node_modules \
 	rm -rf ./services/messages/node_modules 
 
 cleanCache:
 	make clean -C ./services/gateway &
 	make clean -C ./services/users &
+	make clean -C ./services/fights &
 	make clean -C ./services/messages
 

@@ -12,3 +12,4 @@
 *.sublime-workspace
 .vscode/
 .DS_Store
+configs/appConfig.txt
